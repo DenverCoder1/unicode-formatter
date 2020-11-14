@@ -43,6 +43,10 @@ body {
   background: inherit;
   border: 1px solid #777777;
   border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: background 0.2s ease-in;
 }
 
