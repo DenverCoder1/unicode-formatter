@@ -16,6 +16,7 @@ html {
 body {
   background: #eaeaea;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
@@ -86,4 +87,13 @@ textarea.input {
   background: #fafafa;
   padding: 1em;
   font-size: 1.4em;
+}
+
+/* github link */
+
+a.github {
+  color: black;
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.8em;
 }
