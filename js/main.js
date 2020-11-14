@@ -1,4 +1,5 @@
 let formatter = {
+  // font maps
   fonts: {
     normal:
       "\"\\ !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~",
@@ -45,9 +46,13 @@ let formatter = {
     mirrored:
       "\"/ !#$%&')(*+,-.\\0߁ςƐμटმ٢8୧:;<=>⸮@AꓭↃꓷƎꟻӘHIႱꓘ⅃MИOꟼϘЯꙄTUVWXYZ][^_`ɒdↄbɘʇϱʜiįʞlmᴎoqpᴙꙅɈυvwxγz}|{~",
   },
+
+  // initialize constants
   new: function () {
     this.input = document.querySelector(".input");
   },
+
+  // format highlighted text into selected font.
   formatSelection: function (font) {
     // Array.from() splits the string by symbol and not by code points
     let value = Array.from(this.input.value);
@@ -61,7 +66,7 @@ let formatter = {
     // get symbol indices from code point range
     let start = -1;
     let end = value.length;
-    for (let sym = 0, code = 0; sym < end && code <= endCodePoint; ++sym) {
+    for (let sym = 0, code = 0; sym < end; ++sym) {
       code += value[sym].length;
       // start is not yet set and start code point has been passed
       if (start < 0 && code > startCodePoint) {
@@ -70,33 +75,38 @@ let formatter = {
       // end code point has been passed
       else if (code > endCodePoint) {
         end = sym - 1;
-        break;
       }
     }
     // exchange symbols
     for (let i = start; i <= end; ++i) {
+      // the symbol to exchange
       let ch = value[i];
+      // get the index of the symbol in the normal font
       let index = this.fonts.normal.indexOf(ch);
       // if not found, check if it is in a different font
       if (index === -1) {
         for (const f in this.fonts) {
           let currFont = Array.from(this.fonts[f]);
           index = currFont.indexOf(ch);
+          // break if the symbol is found
           if (index > -1) {
             break;
           }
         }
       }
-      // found symbol to exchange
+      // the symbol to exchange was found
       if (index > -1) {
+        // set the value at the current index to the symbol in the target font
         let targetFont = Array.from(this.fonts[font]);
         value[i] = targetFont[index];
       }
     }
+    // join the array back into a string and set the contents
     this.input.value = value.join("");
   },
 };
 
+// when the page loads
 window.addEventListener(
   "load",
   function () {
@@ -108,6 +118,7 @@ window.addEventListener(
       btn.addEventListener(
         "click",
         function () {
+          // format highlighted text into selected font
           formatter.formatSelection(this.className);
         },
         false
@@ -117,18 +128,16 @@ window.addEventListener(
     document.querySelector(".more-fonts").addEventListener(
       "click",
       function () {
-        // show
+        // show additional buttons
         if (this.classList.contains("hide")) {
-          this.classList.remove("hide");
-          this.classList.add("show");
           this.innerText = "⯆ More fonts";
+          this.classList.remove("hide");
           document.querySelector(".controls.more").classList.remove("hide");
         }
-        // hide
+        // hide additional buttons
         else {
-          this.classList.remove("show");
-          this.classList.add("hide");
           this.innerText = "⯈ More fonts";
+          this.classList.add("hide");
           document.querySelector(".controls.more").classList.add("hide");
         }
       },
