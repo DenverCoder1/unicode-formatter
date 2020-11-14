@@ -29,10 +29,29 @@ body {
 
 .controls {
   padding: 1em;
+  transition: all 0.4s ease-out;
+}
+
+.more-fonts {
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-top: 0.5em;
+}
+
+.controls.more {
+  max-height: 190px;
+  padding: 0;
+}
+
+.controls.more.hide {
+  max-height: 0px;
+  overflow: hidden;
 }
 
 .control-btns {
   display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
 }
 
 .controls button {
