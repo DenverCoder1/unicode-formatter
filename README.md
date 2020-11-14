@@ -23,7 +23,7 @@ Unicode fonts can be used to format text on websites that do not support rich te
 
 ## Try it out
 
-https://denvercoder1.github.io/unicode-formatter/
+https://git.io/unicode-formatter
 
 ## How to use
 
