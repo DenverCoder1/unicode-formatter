@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background: #efefef;
+  background: #eaeaea;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,13 +22,12 @@ body {
 }
 
 .wrapper {
-  width: 100%;
+  width: 94%;
   max-width: 600px;
   margin: auto;
 }
 
 .controls {
-  background: #efefef;
   padding: 1em;
 }
 

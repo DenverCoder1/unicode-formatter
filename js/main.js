@@ -13,21 +13,44 @@ let formatter = {
     this.input = document.querySelector(".input");
   },
   formatSelection: function (font) {
-    let value = this.input.value.split("");
-    let start = this.input.selectionStart;
-    let end = this.input.selectionEnd;
-    console.log(value);
+    // Array.from() splits the string by symbol and not by code points
+    let value = Array.from(this.input.value);
+    // selection start is the code point where the selection starts
+    let startCodePoint = this.input.selectionStart;
+    let endCodePoint = this.input.selectionEnd;
+    // check if text is selected
+    if (startCodePoint === endCodePoint) {
+      return;
+    }
+    // get symbol indices from code point range
+    let start = -1;
+    let end = -1;
+    for (let sym = 0, code = 0; end < 0; ++sym) {
+      code += value[sym].length;
+      if (start < 0 && code > startCodePoint) {
+        start = sym;
+      } else if (end < 0 && code > endCodePoint) {
+        end = sym;
+      }
+    }
+    // exchange symbols
     for (let i = start; i < end; ++i) {
-      console.log(i);
       let ch = value[i];
       let index = this.formats.normal.indexOf(ch);
-      if (index > -1) {
-        var uniSelector = new RegExp(`[^]{${index}}(.)`, "u");
-        var match = this.formats[font].match(uniSelector);
-        if (match.length > 1) {
-          value[i] = match[1];
+      // if not found, check if it is in a different font
+      if (index === -1) {
+        for (const f in this.formats) {
+          let currFont = Array.from(this.formats[f]);
+          index = currFont.indexOf(ch);
+          if (index > -1) {
+            break;
+          }
         }
-        console.log(ch, index, match[1]);
+      }
+      // found symbol to exchange
+      if (index > -1) {
+        let targetFont = Array.from(this.formats[font]);
+        value[i] = targetFont[index];
       }
     }
     this.input.value = value.join("");
