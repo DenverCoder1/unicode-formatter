@@ -28,6 +28,19 @@ body {
   margin: auto;
 }
 
+/* logo */
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto 0.5em auto;
+}
+
+a.logo img {
+  width: 100%;
+  max-width: 360px;
+}
+
 /* controls */
 
 .controls {
@@ -71,10 +84,21 @@ body {
   border-color: #333333;
 }
 
+/* More fonts toggle */
+
 .more-fonts {
   font-size: 0.9em;
   cursor: pointer;
   margin-top: 0.5em;
+}
+
+.more-fonts span.arrow svg {
+  transform: translate(0, 2px);
+  transition: transform 0.1s ease-out;
+}
+
+.more-fonts:not(.hide) span.arrow svg {
+  transform: rotate(90deg) translate(2px, 0);
 }
 
 /* textarea */
@@ -89,11 +113,28 @@ textarea.input {
   font-size: 1.4em;
 }
 
-/* github link */
+/* github buttons */
 
-a.github {
+div.github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+div.github a {
   color: black;
-  position: absolute;
-  bottom: 0.5em;
-  right: 0.8em;
+  transition: color 0.1s ease-out;
+}
+
+div.github a:hover {
+  color: #333333;
+}
+
+div.github a,
+div.github iframe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.2em;
 }

@@ -130,13 +130,11 @@ window.addEventListener(
       function () {
         // show additional buttons
         if (this.classList.contains("hide")) {
-          this.innerText = "⯆ More fonts";
           this.classList.remove("hide");
           document.querySelector(".controls.more").classList.remove("hide");
         }
         // hide additional buttons
         else {
-          this.innerText = "⯈ More fonts";
           this.classList.add("hide");
           document.querySelector(".controls.more").classList.add("hide");
         }
