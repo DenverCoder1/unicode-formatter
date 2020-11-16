@@ -105,7 +105,7 @@ a.logo img {
 
 textarea.input {
   width: 100%;
-  height: 356px;
+  height: 326px;
   border: none;
   outline: none;
   background: #fafafa;
@@ -137,4 +137,33 @@ div.github iframe {
   flex-direction: column;
   justify-content: center;
   margin: 0.2em;
+}
+
+/* twitter link */
+.twitter-share-button {
+  background: #1da1f2;
+  color: white;
+  font-size: 1.1em;
+  padding: 0.9em 1.1em;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 133px;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin: 1em auto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.twitter-share-button:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22);
+  background: #1a91da;
+}
+
+.twitter-share-button svg {
+  margin-right: 0.5em;
 }

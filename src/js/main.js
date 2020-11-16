@@ -102,7 +102,18 @@ let formatter = {
       }
     }
     // join the array back into a string and set the contents
-    this.input.value = value.join("");
+    let newText = value.join("");
+    // set textarea content
+    this.input.value = newText;
+  },
+
+  tweet: function () {
+    let text = this.input.value;
+    let twitterUrl = "https://twitter.com/intent/tweet?text=";
+    twitterUrl += encodeURIComponent(text);
+    document.querySelector(".twitter-share-button").href = twitterUrl;
+    const win = window.open(twitterUrl, "_blank");
+    win.focus();
   },
 };
 
