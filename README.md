@@ -33,7 +33,7 @@ Click the eraser icon to convert the text back to normal.
 
 ## Screenshot
 
-![screenshot](https://i.imgur.com/OXmqK4D.png)
+![screenshot](https://i.imgur.com/T6SkEtg.png)
 
 ## Supported Fonts
 
