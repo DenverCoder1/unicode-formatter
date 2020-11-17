@@ -133,7 +133,7 @@ let formatter = {
     if (font === "normal") {
       for (let i = start; i <= end; ++i) {
         if (typeof value[i] === "string") {
-          value[i] = value[i].replace(/\u035f|\u0333|\u0336/gu, "");
+          value[i] = value[i].replace(/\u035f|\u0333|\u0335|\u0336/gu, "");
         }
       }
     }
