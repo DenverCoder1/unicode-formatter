@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unicode formatter</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/main.js"></script>
 </head>
@@ -57,6 +57,9 @@
                 <button class="sansBold" title="Bold">𝗕</button>
                 <button class="sansItalic" title="Italic">𝘐</button>
                 <button class="monospace" title="Monospace">𝙼</button>
+                <button title="Underline" data-append="͟" style="text-decoration: underline;">U</button>
+                <button class="sans" title="Strikethrough" data-append="̶"
+                    style="text-decoration: line-through;">S</button>
             </div>
             <div class="more-fonts hide">
                 <span class="arrow">
@@ -69,14 +72,18 @@
             </div>
             <div class="controls more hide">
                 <div class="control-btns">
-                    <button class="sansBoldItalic" title="Bold italic">𝘽𝙄</button>
-                    <button class="fullwidth" title="Fullwidth">Ｆ</button>
-                    <button class="fraktur" title="Math Fraktur">𝔉</button>
-                    <button class="boldFraktur" title="Math Fraktur bold">𝕱</button>
+                    <button class="sans" title="Math Sans">𝖬</button>
+                    <button class="sansBoldItalic" title="Sans Bold italic">𝘽𝙄</button>
                     <button class="serifBold" title="Serif bold">𝐁</button>
                     <button class="serifItalic" title="Serif italic">𝐼</button>
                     <button class="serifBoldItalic" title="Serif bold italic">𝑩𝑰</button>
+                    <button title="Double Underline" data-append="̳">U̳</button>
+                    <button title="Short Strikethrough" data-append="̵"
+                        style="text-decoration: line-through;">S̵</button>
                     <button class="doubleStruck" title="Math double-struck">𝔻</button>
+                    <button class="fullwidth" title="Fullwidth">Ｆ</button>
+                    <button class="fraktur" title="Math Fraktur">𝔉</button>
+                    <button class="boldFraktur" title="Math Fraktur bold">𝕱</button>
                     <button class="script" title="Script">𝒮</button>
                     <button class="boldScript" title="Bold script">𝓢</button>
                     <button class="circled" title="Circled">Ⓒ</button>
@@ -107,7 +114,7 @@
                             </path>
                         </svg>
                     </button>
-                    <button class="default" title="Reverse" data-reverse="true">
+                    <button title="Reverse" data-reverse="true">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path

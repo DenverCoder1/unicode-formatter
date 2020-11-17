@@ -3,6 +3,8 @@ let formatter = {
   fonts: {
     normal:
       "\"\\ !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~",
+    sans:
+      "\"\\ !#$%&'()*+,-./𝟢𝟣𝟤𝟥𝟦𝟧𝟨𝟩𝟪𝟫:;<=>?@𝖠𝖡𝖢𝖣𝖤𝖥𝖦𝖧𝖨𝖩𝖪𝖫𝖬𝖭𝖮𝖯𝖰𝖱𝖲𝖳𝖴𝖵𝖶𝖷𝖸𝖹[]^_`𝖺𝖻𝖼𝖽𝖾𝖿𝗀𝗁𝗂𝗃𝗄𝗅𝗆𝗇𝗈𝗉𝗊𝗋𝗌𝗍𝗎𝗏𝗐𝗑𝗒𝗓{|}~",
     sansBold:
       "\"\\ !#$%&'()*+,-./𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵:;<=>?@𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭[]^_`𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇{|}~",
     sansItalic:
@@ -104,7 +106,9 @@ let formatter = {
           // set the value at the current index to the symbol in the target font
           let targetFont = Array.from(this.fonts[font]);
           value[i] = targetFont[index];
-        } catch (e) {}
+        } catch (e) {
+          break;
+        }
       }
     }
     // reverse text if reverse option is set
@@ -115,6 +119,22 @@ let formatter = {
         let temp = value[i];
         value[i] = value[end - (i - start)];
         value[end - (i - start)] = temp;
+      }
+    }
+    // append symbol to end of each character
+    if (options && options.append) {
+      for (let i = start; i <= end; ++i) {
+        if (typeof value[i] === "string") {
+          value[i] += options.append;
+        }
+      }
+    }
+    // remove appended symbols (underline, strikethrough, etc.)
+    if (font === "normal") {
+      for (let i = start; i <= end; ++i) {
+        if (typeof value[i] === "string") {
+          value[i] = value[i].replace(/\u035f|\u0333|\u0336/gu, "");
+        }
       }
     }
     // join the array back into a string and set the contents
