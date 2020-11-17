@@ -57,7 +57,7 @@ let formatter = {
   },
 
   // format highlighted text into selected font.
-  formatSelection: function (font) {
+  formatSelection: function (font, options) {
     // Array.from() splits the string by symbol and not by code points
     let value = Array.from(this.input.value);
     // selection start is the code point where the selection starts
@@ -105,6 +105,17 @@ let formatter = {
         value[i] = targetFont[index];
       }
     }
+    // reverse text if reverse option is set
+    if (options && options.reverse) {
+      let middle = (end + start) / 2;
+      for (let i = start; i <= middle; ++i) {
+        // swap beginning and end
+        let temp = value[i];
+        value[i] = value[end - (i - start)];
+        value[end - (i - start)] = temp;
+        console.log(value[i], temp, value[end - (i - start)]);
+      }
+    }
     // join the array back into a string and set the contents
     let newText = value.join("");
     // set textarea content
@@ -134,7 +145,7 @@ window.addEventListener(
         "click",
         function () {
           // format highlighted text into selected font
-          formatter.formatSelection(this.className);
+          formatter.formatSelection(this.className, this.dataset);
         },
         false
       );
