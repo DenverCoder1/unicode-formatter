@@ -117,17 +117,6 @@ let formatter = {
         value[end - (i - start)] = temp;
       }
     }
-    // reverse text if reverse option is set
-    if (options && options.reverse) {
-      let middle = (end + start) / 2;
-      for (let i = start; i <= middle; ++i) {
-        // swap beginning and end
-        let temp = value[i];
-        value[i] = value[end - (i - start)];
-        value[end - (i - start)] = temp;
-        console.log(value[i], temp, value[end - (i - start)]);
-      }
-    }
     // join the array back into a string and set the contents
     let newText = value.join("");
     // set textarea content
