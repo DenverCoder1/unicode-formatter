@@ -100,9 +100,21 @@ let formatter = {
       }
       // the symbol to exchange was found
       if (index > -1) {
-        // set the value at the current index to the symbol in the target font
-        let targetFont = Array.from(this.fonts[font]);
-        value[i] = targetFont[index];
+        try {
+          // set the value at the current index to the symbol in the target font
+          let targetFont = Array.from(this.fonts[font]);
+          value[i] = targetFont[index];
+        } catch (e) {}
+      }
+    }
+    // reverse text if reverse option is set
+    if (options && options.reverse) {
+      let middle = (end + start) / 2;
+      for (let i = start; i <= middle; ++i) {
+        // swap beginning and end
+        let temp = value[i];
+        value[i] = value[end - (i - start)];
+        value[end - (i - start)] = temp;
       }
     }
     // reverse text if reverse option is set
