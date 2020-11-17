@@ -151,6 +151,27 @@ let formatter = {
     const win = window.open(twitterUrl, "_blank");
     win.focus();
   },
+  copy: function (el) {
+    let input = this.input;
+    // backup selection
+    let selectionStart = input.selectionStart;
+    let selectionEnd = input.selectionEnd;
+    // select all
+    input.select();
+    input.setSelectionRange(0, 99999);
+    // copy
+    document.execCommand("copy");
+    // set selection back
+    input.setSelectionRange(selectionStart, selectionEnd);
+    // set tooltip text
+    el.querySelector(".tooltiptext").innerText = "Copied!";
+  },
+};
+
+let tooltip = {
+  resetTooltip: function (el) {
+    el.querySelector(".tooltiptext").innerText = el.dataset.tooltip;
+  },
 };
 
 // when the page loads
