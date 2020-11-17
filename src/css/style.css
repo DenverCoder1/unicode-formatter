@@ -173,11 +173,11 @@ div.github iframe {
   margin-right: 0.5em;
 }
 
-.twitter-share-button {
+.tweet-button {
   background: #1da1f2;
 }
 
-.twitter-share-button:hover {
+.tweet-button:hover {
   background: #1a91da;
 }
 
@@ -190,40 +190,51 @@ div.github iframe {
 }
 
 /* tooltips */
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
+/* bubble */
+.controls button:before,
+.large-buttons button:before {
+  content: attr(title);
+  height: auto;
+  width: auto;
   position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -75px;
+  background: #4a4a4afa;
+  border-radius: 4px;
+  color: white;
+  line-height: 30px;
+  font-size: 1.1em;
+  padding: 0 12px;
+  transform: translate(0, -38px);
+  transition: all 0.2s ease-out;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after {
+/* triangle */
+.controls button:after,
+.large-buttons button:after {
   content: "";
   position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-color: #4a4a4afa transparent transparent transparent;
+  transform: translate(0, -20px);
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+  opacity: 0;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
+.large-buttons button:before {
+  font-size: 1em;
+  transform: translateY(-52px);
+}
+
+.large-buttons button:after {
+  transform: translateY(-34px);
+}
+
+.controls button:hover:before,
+.large-buttons button:hover:before,
+.controls button:hover:after,
+.large-buttons button:hover:after {
   opacity: 1;
 }

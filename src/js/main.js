@@ -164,13 +164,13 @@ let formatter = {
     // set selection back
     input.setSelectionRange(selectionStart, selectionEnd);
     // set tooltip text
-    el.querySelector(".tooltiptext").innerText = "Copied!";
+    el.title = "Copied!";
   },
 };
 
 let tooltip = {
   resetTooltip: function (el) {
-    el.querySelector(".tooltiptext").innerText = el.dataset.tooltip;
+    el.title = el.dataset.originalTitle;
   },
 };
 
