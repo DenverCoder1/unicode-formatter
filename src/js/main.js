@@ -147,7 +147,6 @@ let formatter = {
     let text = this.input.value;
     let twitterUrl = "https://twitter.com/intent/tweet?text=";
     twitterUrl += encodeURIComponent(text);
-    document.querySelector(".twitter-share-button").href = twitterUrl;
     const win = window.open(twitterUrl, "_blank");
     win.focus();
   },
