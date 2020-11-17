@@ -144,12 +144,12 @@ div.github iframe {
   background: #1da1f2;
   color: white;
   font-size: 1.1em;
-  padding: 0.9em 1.1em;
-  border-radius: 8px;
+  padding: 0.8em 1.1em;
+  border-radius: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 133px;
+  width: 134px;
   text-decoration: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
