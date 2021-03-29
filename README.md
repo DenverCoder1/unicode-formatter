@@ -3,19 +3,22 @@
 </p>
 
 <p align="center">
-  Convert portions of text to fancy text
+  Format your Unicode text with 𝗯𝗼𝗹𝗱, 𝘪𝘵𝘢𝘭𝘪𝘤𝘴, and 𝚖𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎
   <br/>
-  for Twitter using unicode fonts.
+  and make all kinds of 𝓯𝓪𝓷𝓬𝔂 𝓽𝓮𝔁𝓽 with Unicode fonts.
 </p>
 
-Unicode fonts can be used to format text on websites that do not support rich text input such as Twitter.
+<p align="center">
+  <a href="https://discord.gg/fPrdqh3Zfu" alt="Dev Pro Tips Discussion & Support Server">
+    <img src="https://img.shields.io/discord/819650821314052106?color=7289DA&logo=discord&logoColor=white&style=for-the-badge"/></a>
+</p>
 
 ## Unicode Formatter
 
 - [Unicode Formatter](#unicode-formatter)
 - [Try it out](#try-it-out)
 - [How to use](#how-to-use)
-- [Screenshot](#screenshot)
+- [Demo](#demo)
 - [Supported Fonts](#supported-fonts)
 - [Contributing](#contributing)
 - [Contact me](#contact-me)
@@ -31,9 +34,9 @@ Highlight text in the textarea and then click a button to format your selection 
 
 Click the eraser icon to convert the text back to normal.
 
-## Screenshot
+## Demo
 
-![screenshot](https://i.imgur.com/Jat8kNo.png)
+[![screenshot](https://i.imgur.com/Jat8kNo.png)](https://git.io/unicode-formatter)
 
 ## Supported Fonts
 
