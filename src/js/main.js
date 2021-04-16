@@ -29,8 +29,12 @@ let formatter = {
   },
 
   // initialize formatter with CodeMirror
-  init: function (cm) {
-    this.CodeMirror = cm;
+  init: function (textarea) {
+    // no code highlighting and wrap long lines
+    this.CodeMirror = CodeMirror.fromTextArea(textarea, {
+      mode: null,
+      lineWrapping: true
+    });
   },
 
   // format highlighted text into selected font.
@@ -101,13 +105,8 @@ let tooltip = {
 window.addEventListener("load", function () {
   // textarea for initializing CodeMirror
   const textarea = document.querySelector("textarea");
-  // no code highlighting and wrap long lines
-  const options = {
-    mode: null,
-    lineWrapping: true
-  };
   // initialize formatter
-  formatter.init(CodeMirror.fromTextArea(textarea, options));
+  formatter.init(textarea);
   // add click event listeners to format buttons
   document.querySelectorAll(".control-btns button").forEach(function (btn) {
     btn.addEventListener("click", function () {
