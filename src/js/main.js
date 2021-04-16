@@ -53,54 +53,40 @@ let formatter = {
       "\"/ !#$%&')(*+,-.\\0߁ςƐ߂टმ٢8୧:;<=>⸮@AꓭↃꓷƎꟻӘHIႱꓘ⅃MИOꟼϘЯꙄTUVWXYZ][^_`ɒdↄbɘʇϱʜiįʞlmᴎoqpᴙꙅɈυvwxγz}|{~",
   },
 
-  // initialize CodeMirror
+  // initialize formatter with CodeMirror
   init: function (cm) {
     this.CodeMirror = cm;
   },
 
   // format highlighted text into selected font.
   formatSelection: function (font, options) {
-    // position (line and character) where the selection starts and ends
-    const startPos = this.CodeMirror.getCursor("from");
-    const endPos = this.CodeMirror.getCursor("to");
     // Array.from() splits the string by symbol and not by code points
-    let textRange = Array.from(this.CodeMirror.getRange(startPos, endPos));
-    const length = textRange.length;
+    let newText = Array.from(this.CodeMirror.getSelection());
     // exchange font symbols
-    for (let i = 0; i < length; ++i) {
-      // skip this loop if font is not in the list
-      if (typeof this.fonts[font] === 'undefined') {
-        break;
-      }
-      // the symbol to exchange
-      const character = textRange[i];
-      // check for the index of the symbol in some font
-      for (const f in this.fonts) {
-        const index = Array.from(this.fonts[f]).indexOf(character);
-        // if the symbol is found
-        if (index >= 0) {
-          // set the value at the current index to the symbol in the target font
-          const targetFont = Array.from(this.fonts[font]);
-          textRange[i] = targetFont[index];
-          break;
-        }
-      }
+    if (this.fonts[font]) {
+      const targetFont = Array.from(this.fonts[font]);
+      const charLists = Object.values(this.fonts);
+      // map characters to new font
+      newText = newText.map((char) => {
+        let index;
+        // find the index of the character in some font
+        const found = charLists.some((charList) => {
+          index = Array.from(charList).indexOf(char);
+          return index > -1;
+        });
+        // if found, replace with the corresponding character in the target font
+        // if not found, keep the character the same
+        return found ? targetFont[index] : char;
+      });
     }
     // reverse text if reverse option is set
-    if (options?.reverse) {
-      // reverse string between start and end
-      textRange = textRange.reverse();
-    }
-    // append symbol (underline, strikethrough, etc.) to end of each character
-    if (options?.append) {
-      textRange = textRange.map((x) => x + options.append);
-    }
+    newText = options?.reverse ? newText.reverse() : newText;
+    // append symbol (underline, strikethrough, etc.) to end of each character if append is set
+    newText = options?.append ? newText.map((char) => char + options.append) : newText;
     // remove appended symbols (underline, strikethrough, etc.)
-    if (font === "normal") {
-      textRange = textRange.map((x) => x.replace(/\u035f|\u0333|\u0335|\u0336/gu, ""));
-    }
+    newText = font === "normal" ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
     // set textarea content and select text around replacement
-    this.CodeMirror.replaceSelection(textRange.join(""), "around");
+    this.CodeMirror.replaceSelection(newText.join(""), "around");
   },
 
   tweet: function () {
@@ -111,7 +97,7 @@ let formatter = {
   },
 
   copy: function (el) {
-    // create textarea with text content
+    // create dummy textarea with text content
     const textarea = document.createElement("textarea");
     textarea.value = this.CodeMirror.getValue();
     document.body.appendChild(textarea);
@@ -134,24 +120,18 @@ let tooltip = {
 };
 
 // when the page loads
-window.addEventListener(
-  "load",
-  function () {
-    const input = document.querySelector(".input");
-    const options = { mode: "none", lineWrapping: true };
-    // initialize formatter input
-    formatter.init(CodeMirror.fromTextArea(input, options));
-    // add click event listeners to format buttons
-    document.querySelectorAll(".control-btns button").forEach((btn) => {
-      btn.addEventListener(
-        "click",
-        function () {
-          // format highlighted text into selected font
-          formatter.formatSelection(this.className, this.dataset);
-        },
-        false
-      );
-    });
-  },
-  false
-);
+window.addEventListener("load", function () {
+  // textarea for initializing CodeMirror
+  const input = document.querySelector(".input");
+  // no code highlighting and wrap long lines
+  const options = { mode: null, lineWrapping: true };
+  // initialize formatter input
+  formatter.init(CodeMirror.fromTextArea(input, options));
+  // add click event listeners to format buttons
+  document.querySelectorAll(".control-btns button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // format highlighted text into selected font
+      formatter.formatSelection(this.className, this.dataset);
+    }, false);
+  });
+}, false);
