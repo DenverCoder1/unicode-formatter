@@ -10,8 +10,6 @@ html {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
 }
 
 body {
@@ -20,13 +18,30 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  height: 95vh;
+  width: 95vw;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
-.wrapper {
-  width: 90vw;
-  max-width: 600px;
-  margin: auto;
+body,
+button,
+textarea {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+.CodeMirror {
+  font-family: inherit;
+  font-size: 22px;
+  padding: 18px;
+}
+
+button:focus,
+summary:focus,
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #038c78;
 }
 
 /* logo */
@@ -45,24 +60,21 @@ a.logo img {
 /* controls */
 
 .controls {
-  padding: 1em;
+  padding: 0.5em;
   transition: all 0.4s ease-out;
-}
-
-.controls.more {
-  max-height: 190px;
-  padding: 0;
-}
-
-.controls.more.hide {
-  max-height: 0px;
-  overflow: hidden;
+  width: 100%;
 }
 
 .control-btns {
   display: flex;
   flex-wrap: wrap;
   margin-top: 0.5em;
+}
+
+.more-fonts summary {
+  margin: 0 0 12px 6px;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 .controls button {
@@ -85,26 +97,13 @@ a.logo img {
   border-color: #333333;
 }
 
-/* More fonts toggle */
-
-.more-fonts {
-  font-size: 0.9em;
-  cursor: pointer;
-  margin-top: 0.5em;
-}
-
-.more-fonts span.arrow svg {
-  transform: translate(0, 2px);
-  transition: transform 0.1s ease-out;
-}
-
-.more-fonts:not(.hide) span.arrow svg {
-  transform: rotate(90deg) translate(2px, 0);
+.more-fonts button {
+  padding: 0px
 }
 
 /* textarea */
 
-textarea.input {
+textarea {
   width: 100%;
   height: 294px;
   border: none;
