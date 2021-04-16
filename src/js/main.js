@@ -60,36 +60,20 @@ let formatter = {
 
   // format highlighted text into selected font.
   formatSelection: function (font, options) {
+    // position (line and character) where the selection starts and ends
+    const startPos = this.CodeMirror.getCursor("from");
+    const endPos = this.CodeMirror.getCursor("to");
     // Array.from() splits the string by symbol and not by code points
-    const value = Array.from(this.CodeMirror.getValue());
-    const length = value.length;
-    // selection start is the code point where the selection starts
-    const startCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("from"));
-    const endCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("to"));
-    // check if text is selected
-    if (startCode === endCode) {
-      return;
-    }
-    // get symbol indices from code point range
-    let symbol = 0;
-    // increment symbol number until codepoint count reaches start codepoint
-    for (let code = 0; symbol < length && code < startCode; code += value[symbol].length) {
-      ++symbol;
-    }
-    const start = symbol;
-    // increment symbol number until codepoint count passes reaches codepoint
-    for (let code = startCode; symbol < length && code < endCode; code += value[symbol].length) {
-      ++symbol;
-    }
-    const end = symbol - 1;
+    let textRange = Array.from(this.CodeMirror.getRange(startPos, endPos));
+    const length = textRange.length;
     // exchange font symbols
-    for (let i = start; i <= end; ++i) {
+    for (let i = 0; i < length; ++i) {
       // skip this loop if font is not in the list
       if (typeof this.fonts[font] === 'undefined') {
         break;
       }
       // the symbol to exchange
-      const character = value[i];
+      const character = textRange[i];
       // check for the index of the symbol in some font
       for (const f in this.fonts) {
         const index = Array.from(this.fonts[f]).indexOf(character);
@@ -97,7 +81,7 @@ let formatter = {
         if (index >= 0) {
           // set the value at the current index to the symbol in the target font
           const targetFont = Array.from(this.fonts[font]);
-          value[i] = targetFont[index];
+          textRange[i] = targetFont[index];
           break;
         }
       }
@@ -105,32 +89,18 @@ let formatter = {
     // reverse text if reverse option is set
     if (options?.reverse) {
       // reverse string between start and end
-      const middle = (end + start) / 2;
-      for (let i = start; i <= middle; ++i) {
-        // swap beginning and end
-        [value[i], value[end - (i - start)]] = [value[end - (i - start)], value[i]];
-      }
+      textRange = textRange.reverse();
     }
     // append symbol (underline, strikethrough, etc.) to end of each character
     if (options?.append) {
-      for (let i = start; i <= end; ++i) {
-        if (typeof value[i] === "string") {
-          value[i] += options.append;
-        }
-      }
+      textRange = textRange.map((x) => x + options.append);
     }
     // remove appended symbols (underline, strikethrough, etc.)
     if (font === "normal") {
-      for (let i = start; i <= end; ++i) {
-        if (typeof value[i] === "string") {
-          value[i] = value[i].replace(/\u035f|\u0333|\u0335|\u0336/gu, "");
-        }
-      }
+      textRange = textRange.map((x) => x.replace(/\u035f|\u0333|\u0335|\u0336/gu, ""));
     }
-    // join the array back into a string and set the contents
-    const newText = value.join("");
-    // set textarea content
-    this.CodeMirror.setValue(newText);
+    // set textarea content and select text around replacement
+    this.CodeMirror.replaceSelection(textRange.join(""), "around");
   },
 
   tweet: function () {
