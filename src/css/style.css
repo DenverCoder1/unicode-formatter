@@ -18,7 +18,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  height: 95vh;
+  width: 95vw;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
 body,
@@ -32,12 +35,6 @@ textarea {
   font-family: inherit;
   font-size: 22px;
   padding: 18px;
-}
-
-.wrapper {
-  width: 90vw;
-  max-width: 600px;
-  margin: auto;
 }
 
 button:focus,
@@ -63,8 +60,9 @@ a.logo img {
 /* controls */
 
 .controls {
-  padding: 1em;
+  padding: 0.5em;
   transition: all 0.4s ease-out;
+  width: 100%;
 }
 
 .control-btns {
@@ -74,7 +72,7 @@ a.logo img {
 }
 
 .more-fonts summary {
-  margin-top: 10px;
+  margin: 0 0 12px 6px;
   cursor: pointer;
   border-radius: 2px;
 }
