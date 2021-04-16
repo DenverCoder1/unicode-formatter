@@ -183,23 +183,6 @@ window.addEventListener(
         false
       );
     });
-    // add click event listener to the "more fonts" toggle
-    document.querySelector(".more-fonts").addEventListener(
-      "click",
-      function () {
-        // show additional buttons
-        if (this.classList.contains("hide")) {
-          this.classList.remove("hide");
-          document.querySelector(".controls.more").classList.remove("hide");
-        }
-        // hide additional buttons
-        else {
-          this.classList.add("hide");
-          document.querySelector(".controls.more").classList.add("hide");
-        }
-      },
-      false
-    );
   },
   false
 );

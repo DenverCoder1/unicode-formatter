@@ -41,6 +41,13 @@ textarea {
   margin: auto;
 }
 
+button:focus,
+summary:focus,
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #038c78;
+}
+
 /* logo */
 
 .logo {
@@ -66,15 +73,16 @@ a.logo img {
   padding: 0;
 }
 
-.controls.more.hide {
-  max-height: 0px;
-  overflow: hidden;
-}
-
 .control-btns {
   display: flex;
   flex-wrap: wrap;
   margin-top: 0.5em;
+}
+
+.more-fonts summary {
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 .controls button {
@@ -97,21 +105,8 @@ a.logo img {
   border-color: #333333;
 }
 
-/* More fonts toggle */
-
-.more-fonts {
-  font-size: 0.9em;
-  cursor: pointer;
-  margin-top: 0.5em;
-}
-
-.more-fonts span.arrow svg {
-  transform: translate(0, 2px);
-  transition: transform 0.1s ease-out;
-}
-
-.more-fonts:not(.hide) span.arrow svg {
-  transform: rotate(90deg) translate(2px, 0);
+.more button {
+  padding: 0px
 }
 
 /* textarea */
