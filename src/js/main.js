@@ -37,10 +37,10 @@ let formatter = {
     });
   },
 
-  // format highlighted text into selected font.
-  formatSelection: function (font, options) {
+  // format text into selected font
+  formatText: function (text, font, options) {
     // Array.from() splits the string by symbol and not by code points
-    let newText = Array.from(this.CodeMirror.getSelection());
+    let newText = Array.from(text);
     // exchange font symbols
     if (this.fonts[font]) {
       const targetFont = Array.from(this.fonts[font]);
@@ -65,7 +65,17 @@ let formatter = {
     // remove appended symbols (underline, strikethrough, etc.) if using eraser
     newText = font === "normal" ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
     // set textarea content and select text around the replacement
-    this.CodeMirror.replaceSelection(newText.join(""), "around");
+    return newText.join("");
+  },
+
+  // format selected text
+  formatSelections: function (font, options) {
+    // for each selection (there can be multiple), format the text
+    const newTexts = this.CodeMirror.getSelections().map((selection) =>
+      this.formatText(selection, font, options)
+    );
+    // replace all selections with replacements
+    this.CodeMirror.replaceSelections(newTexts, "around");
   },
 
   // open twitter with the text value as the post
@@ -111,7 +121,7 @@ window.addEventListener("load", function () {
   document.querySelectorAll(".control-btns button").forEach(function (btn) {
     btn.addEventListener("click", function () {
       // format highlighted text into selected font
-      formatter.formatSelection(this.className, this.dataset);
+      formatter.formatSelections(this.className, this.dataset);
     }, false);
   });
 }, false);
