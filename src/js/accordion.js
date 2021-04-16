@@ -44,16 +44,13 @@ class Accordion {
       this.animation.cancel();
     }
     // Start a WAAPI animation
-    this.animation = this.el.animate(
-      {
-        // Set the keyframes from the startHeight to endHeight
-        height: [startHeight, endHeight],
-      },
-      {
-        duration: 400,
-        easing: "ease-out",
-      }
-    );
+    this.animation = this.el.animate({
+      // Set the keyframes from the startHeight to endHeight
+      height: [startHeight, endHeight],
+    }, {
+      duration: 400,
+      easing: "ease-out",
+    });
     // When the animation is complete, call onAnimationFinish()
     this.animation.onfinish = () => this.onAnimationFinish(false);
     // If the animation is cancelled, isClosing variable is set to false
@@ -84,16 +81,13 @@ class Accordion {
       this.animation.cancel();
     }
     // Start a WAAPI animation
-    this.animation = this.el.animate(
-      {
-        // Set the keyframes from the startHeight to endHeight
-        height: [startHeight, endHeight],
-      },
-      {
-        duration: 400,
-        easing: "ease-out",
-      }
-    );
+    this.animation = this.el.animate({
+      // Set the keyframes from the startHeight to endHeight
+      height: [startHeight, endHeight],
+    }, {
+      duration: 400,
+      easing: "ease-out",
+    });
     // When the animation is complete, call onAnimationFinish()
     this.animation.onfinish = () => this.onAnimationFinish(true);
     // If the animation is cancelled, isExpanding variable is set to false
