@@ -35,10 +35,62 @@ let formatter = {
       mode: null,
       lineWrapping: true
     });
+    // list of font characters for checking if character is formatted
+    this.allCharacters = new Set(Object.values(this.fonts).join(""));
+    // add keymaps
+    this.CodeMirror.setOption("extraKeys", {
+      // Bold
+      "Ctrl-B": () => this.formatSelections("sansBold"),
+      // Italic
+      "Ctrl-I": () => this.formatSelections("sansItalic"),
+      // Monospace
+      "Ctrl-M": () => this.formatSelections("monospace"),
+      // Underline
+      "Ctrl-U": () => this.formatSelections("", {
+        append: "͟"
+      }),
+      // Strikethrough
+      "Alt-K": () => this.formatSelections("", {
+        append: "̶"
+      }),
+      "Shift-Alt-5": () => this.formatSelections("", {
+        append: "̶"
+      }),
+      // Superscript
+      "Shift-Ctrl-=": () => this.formatSelections("superscript"),
+      "Ctrl-.": () => this.formatSelections("superscript"),
+      // Subscript
+      "Ctrl-=": () => this.formatSelections("subscript"),
+      "Ctrl-,": () => this.formatSelections("superscript"),
+    });
+  },
+
+  // check if text is already formatted with a certain font
+  alreadyFormatted: function (text, font) {
+    const fontCharacters = new Set(this.fonts[font]);
+    // flag as already formatted if all characters are in font or not in any other font
+    return Array.from(text).every((char) =>
+      fontCharacters.has(char) || !this.allCharacters.has(char)
+    );
+  },
+
+  // check if text is already formatted with a certain font
+  alreadyAppended: function (text, append) {
+    // check if at least half the characters are the append character
+    return Array.from(text).filter((char) => char == append).length >= text.length / 2;
   },
 
   // format text into selected font
   formatText: function (text, font, options) {
+    // set font to normal if already formatted with selected font
+    if (this.fonts[font] && this.alreadyFormatted(text, font)) {
+      font = "normal";
+    }
+    // remove and don't append if character is already appended
+    if (options?.append) {
+      options.remove = options.append;
+      options.append = !this.alreadyAppended(text, options.append) ? options.append : "";
+    }
     // Array.from() splits the string by symbol and not by code points
     let newText = Array.from(text);
     // exchange font symbols
@@ -60,10 +112,13 @@ let formatter = {
     }
     // reverse text if reverse option is set
     newText = options?.reverse ? newText.reverse() : newText;
+    // remove appended symbol of specific type from the end
+    newText = options?.remove ? newText.map((char) => char.replace(new RegExp(options.remove + "$", "u"), "")) : newText;
     // append symbol (underline, strikethrough, etc.) to end of each character if append is set
     newText = options?.append ? newText.map((char) => char + options.append) : newText;
     // remove appended symbols (underline, strikethrough, etc.) if using eraser
-    newText = font === "normal" ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
+    // \u035f = Underline, \u0333 = Double Underline, \u0335 = Short Strikethrough \u0336 = Strikethrough
+    newText = options?.clear ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
     // set textarea content and select text around the replacement
     return newText.join("");
   },
@@ -121,7 +176,7 @@ window.addEventListener("load", function () {
   document.querySelectorAll(".control-btns button").forEach(function (btn) {
     btn.addEventListener("click", function () {
       // format highlighted text into selected font
-      formatter.formatSelections(this.className, this.dataset);
+      formatter.formatSelections(this.className, {...this.dataset});
     }, false);
   });
 }, false);
