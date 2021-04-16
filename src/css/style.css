@@ -28,6 +28,13 @@ textarea {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
 }
+
+.CodeMirror {
+  font-family: inherit;
+  font-size: 22px;
+  padding: 18px;
+}
+
 .wrapper {
   width: 90vw;
   max-width: 600px;

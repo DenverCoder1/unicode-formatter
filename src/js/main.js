@@ -53,37 +53,39 @@ let formatter = {
       "\"/ !#$%&')(*+,-.\\0߁ςƐ߂टმ٢8୧:;<=>⸮@AꓭↃꓷƎꟻӘHIႱꓘ⅃MИOꟼϘЯꙄTUVWXYZ][^_`ɒdↄbɘʇϱʜiįʞlmᴎoqpᴙꙅɈυvwxγz}|{~",
   },
 
-  // initialize constants
-  new: function () {
-    this.input = document.querySelector(".input");
+  // initialize CodeMirror
+  init: function () {
+    this.CodeMirror = CodeMirror.fromTextArea(
+      document.querySelector(".input"),
+      { mode: "none", lineWrapping: true }
+    );
   },
 
   // format highlighted text into selected font.
   formatSelection: function (font, options) {
     // Array.from() splits the string by symbol and not by code points
     let value = Array.from(this.input.value);
+    const value = Array.from(this.CodeMirror.getValue());
     // selection start is the code point where the selection starts
-    let startCodePoint = this.input.selectionStart;
-    let endCodePoint = this.input.selectionEnd;
+    const startCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("from"));
+    const endCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("to"));
     // check if text is selected
-    if (startCodePoint === endCodePoint) {
+    if (startCode === endCode) {
       return;
     }
     // get symbol indices from code point range
-    let start = -1;
-    let end = value.length;
-    for (let sym = 0, code = 0; sym < end; ++sym) {
-      code += value[sym].length;
-      // start is not yet set and start code point has been passed
-      if (start < 0 && code > startCodePoint) {
-        start = sym;
-      }
-      // end code point has been passed
-      else if (code > endCodePoint) {
-        end = sym - 1;
-      }
+    let symbol = 0;
+    // increment symbol number until codepoint count reaches start codepoint
+    for (let code = 0; symbol < length && code < startCode; code += value[symbol].length) {
+      ++symbol;
     }
-    // exchange symbols
+    const start = symbol;
+    // increment symbol number until codepoint count passes reaches codepoint
+    for (let code = startCode; symbol < length && code < endCode; code += value[symbol].length) {
+      ++symbol;
+    }
+    const end = symbol - 1;
+    // exchange font symbols
     for (let i = start; i <= end; ++i) {
       // the symbol to exchange
       let ch = value[i];
@@ -144,24 +146,23 @@ let formatter = {
   },
 
   tweet: function () {
-    let text = this.input.value;
-    let twitterUrl = "https://twitter.com/intent/tweet?text=";
-    twitterUrl += encodeURIComponent(text);
+    const text = this.CodeMirror.getValue();
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     const win = window.open(twitterUrl, "_blank");
     win.focus();
   },
   copy: function (el) {
-    let input = this.input;
-    // backup selection
-    let selectionStart = input.selectionStart;
-    let selectionEnd = input.selectionEnd;
+    // create textarea with text content
+    const textarea = document.createElement("textarea");
+    textarea.value = this.CodeMirror.getValue();
+    document.body.appendChild(textarea);
     // select all
-    input.select();
-    input.setSelectionRange(0, 99999);
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
     // copy
     document.execCommand("copy");
-    // set selection back
-    input.setSelectionRange(selectionStart, selectionEnd);
+    // remove textarea
+    textarea.parentElement.removeChild(textarea);
     // set tooltip text
     el.title = "Copied!";
   },
@@ -178,10 +179,10 @@ window.addEventListener(
   "load",
   function () {
     // initialize formatter input
-    formatter.new();
     // add event listeners to buttons
     let buttons = document.querySelectorAll(".control-btns button");
     buttons.forEach((btn) => {
+    formatter.init();
       btn.addEventListener(
         "click",
         function () {
