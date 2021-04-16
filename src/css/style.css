@@ -68,11 +68,6 @@ a.logo img {
   transition: all 0.4s ease-out;
 }
 
-.controls.more {
-  max-height: 190px;
-  padding: 0;
-}
-
 .control-btns {
   display: flex;
   flex-wrap: wrap;
@@ -105,7 +100,7 @@ a.logo img {
   border-color: #333333;
 }
 
-.more button {
+.more-fonts button {
   padding: 0px
 }
 
