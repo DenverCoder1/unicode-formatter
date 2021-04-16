@@ -39,12 +39,29 @@ let formatter = {
     this.allCharacters = new Set(Object.values(this.fonts).join(""));
     // add keymaps
     this.CodeMirror.setOption("extraKeys", {
+      // Bold
       "Ctrl-B": () => this.formatSelections("sansBold"),
+      // Italic
       "Ctrl-I": () => this.formatSelections("sansItalic"),
+      // Monospace
+      "Ctrl-M": () => this.formatSelections("monospace"),
+      // Underline
       "Ctrl-U": () => this.formatSelections("", {
         append: "͟"
       }),
-      "Ctrl-M": () => this.formatSelections("monospace"),
+      // Strikethrough
+      "Alt-K": () => this.formatSelections("", {
+        append: "̶"
+      }),
+      "Shift-Alt-5": () => this.formatSelections("", {
+        append: "̶"
+      }),
+      // Superscript
+      "Shift-Ctrl-=": () => this.formatSelections("superscript"),
+      "Ctrl-.": () => this.formatSelections("superscript"),
+      // Subscript
+      "Ctrl-=": () => this.formatSelections("subscript"),
+      "Ctrl-,": () => this.formatSelections("superscript"),
     });
   },
 
