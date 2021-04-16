@@ -64,8 +64,8 @@ let formatter = {
   // format highlighted text into selected font.
   formatSelection: function (font, options) {
     // Array.from() splits the string by symbol and not by code points
-    let value = Array.from(this.input.value);
     const value = Array.from(this.CodeMirror.getValue());
+    const length = value.length;
     // selection start is the code point where the selection starts
     const startCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("from"));
     const endCode = this.CodeMirror.indexFromPos(this.CodeMirror.getCursor("to"));
@@ -87,44 +87,35 @@ let formatter = {
     const end = symbol - 1;
     // exchange font symbols
     for (let i = start; i <= end; ++i) {
-      // the symbol to exchange
-      let ch = value[i];
-      // get the index of the symbol in the normal font
-      let index = this.fonts.normal.indexOf(ch);
-      // if not found, check if it is in a different font
-      if (index === -1) {
-        for (const f in this.fonts) {
-          let currFont = Array.from(this.fonts[f]);
-          index = currFont.indexOf(ch);
-          // break if the symbol is found
-          if (index > -1) {
-            break;
-          }
-        }
+      // skip this loop if font is not in the list
+      if (typeof this.fonts[font] === 'undefined') {
+        break;
       }
-      // the symbol to exchange was found
-      if (index > -1) {
-        try {
+      // the symbol to exchange
+      const character = value[i];
+      // check for the index of the symbol in some font
+      for (const f in this.fonts) {
+        const index = Array.from(this.fonts[f]).indexOf(character);
+        // if the symbol is found
+        if (index >= 0) {
           // set the value at the current index to the symbol in the target font
-          let targetFont = Array.from(this.fonts[font]);
+          const targetFont = Array.from(this.fonts[font]);
           value[i] = targetFont[index];
-        } catch (e) {
           break;
         }
       }
     }
     // reverse text if reverse option is set
-    if (options && options.reverse) {
-      let middle = (end + start) / 2;
+    if (options?.reverse) {
+      // reverse string between start and end
+      const middle = (end + start) / 2;
       for (let i = start; i <= middle; ++i) {
         // swap beginning and end
-        let temp = value[i];
-        value[i] = value[end - (i - start)];
-        value[end - (i - start)] = temp;
+        [value[i], value[end - (i - start)]] = [value[end - (i - start)], value[i]];
       }
     }
-    // append symbol to end of each character
-    if (options && options.append) {
+    // append symbol (underline, strikethrough, etc.) to end of each character
+    if (options?.append) {
       for (let i = start; i <= end; ++i) {
         if (typeof value[i] === "string") {
           value[i] += options.append;
@@ -140,9 +131,9 @@ let formatter = {
       }
     }
     // join the array back into a string and set the contents
-    let newText = value.join("");
+    const newText = value.join("");
     // set textarea content
-    this.input.value = newText;
+    this.CodeMirror.setValue(newText);
   },
 
   tweet: function () {
@@ -151,6 +142,7 @@ let formatter = {
     const win = window.open(twitterUrl, "_blank");
     win.focus();
   },
+
   copy: function (el) {
     // create textarea with text content
     const textarea = document.createElement("textarea");
@@ -179,10 +171,9 @@ window.addEventListener(
   "load",
   function () {
     // initialize formatter input
-    // add event listeners to buttons
-    let buttons = document.querySelectorAll(".control-btns button");
-    buttons.forEach((btn) => {
     formatter.init();
+    // add click event listeners to format buttons
+    document.querySelectorAll(".control-btns button").forEach((btn) => {
       btn.addEventListener(
         "click",
         function () {
@@ -192,7 +183,7 @@ window.addEventListener(
         false
       );
     });
-    // add event listener to more fonts toggle
+    // add click event listener to the "more fonts" toggle
     document.querySelector(".more-fonts").addEventListener(
       "click",
       function () {
