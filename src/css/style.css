@@ -45,7 +45,7 @@ button:focus,
 summary:focus,
 a:focus {
   outline: none;
-  box-shadow: 0 0 0 3px #038c78;
+  box-shadow: 0 0 0 2px #038c78;
 }
 
 /* logo */
