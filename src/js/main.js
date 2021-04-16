@@ -72,7 +72,7 @@ let formatter = {
     // append symbol (underline, strikethrough, etc.) to end of each character if append is set
     newText = options?.append ? newText.map((char) => char + options.append) : newText;
     // remove appended symbols (underline, strikethrough, etc.) if using eraser
-    newText = font === "normal" ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
+    newText = options?.clear ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
     // set textarea content and select text around the replacement
     return newText.join("");
   },
