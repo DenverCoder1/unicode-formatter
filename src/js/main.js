@@ -35,6 +35,15 @@ let formatter = {
       mode: null,
       lineWrapping: true
     });
+    // add keymaps
+    this.CodeMirror.setOption("extraKeys", {
+      "Ctrl-B": () => this.formatSelections("sansBold"),
+      "Ctrl-I": () => this.formatSelections("sansItalic"),
+      "Ctrl-U": () => this.formatSelections("", {
+        append: "͟"
+      }),
+      "Ctrl-M": () => this.formatSelections("monospace"),
+    });
   },
 
   // format text into selected font
