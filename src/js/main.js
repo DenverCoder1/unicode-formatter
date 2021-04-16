@@ -122,11 +122,11 @@ let tooltip = {
 // when the page loads
 window.addEventListener("load", function () {
   // textarea for initializing CodeMirror
-  const input = document.querySelector(".input");
+  const textarea = document.querySelector("textarea");
   // no code highlighting and wrap long lines
   const options = { mode: null, lineWrapping: true };
-  // initialize formatter input
-  formatter.init(CodeMirror.fromTextArea(input, options));
+  // initialize formatter
+  formatter.init(CodeMirror.fromTextArea(textarea, options));
   // add click event listeners to format buttons
   document.querySelectorAll(".control-btns button").forEach(function (btn) {
     btn.addEventListener("click", function () {

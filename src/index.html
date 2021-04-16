@@ -8,7 +8,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-BBVZZXSVXD');
     </script>
     <meta charset="UTF-8">
@@ -17,7 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.60.0/codemirror.min.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.60.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.60.0/codemirror.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript" src="./js/accordion.js" defer></script>
@@ -50,6 +50,7 @@
             <span class="fonts-label">Fonts:</span>
             <div class="control-btns">
                 <button class="normal" title="Normal">
+                    <!-- Eraser Icon -->
                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -93,6 +94,7 @@
                     <button class="mirrored" title="Mirrored">Я</button>
                     <button class="inverted" title="Inverted Reverse" data-reverse="true">
                         ∀
+                        <!-- Left/Right Arrow Icon -->
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -102,6 +104,7 @@
                     </button>
                     <button class="mirrored" title="Mirrored Reverse" data-reverse="true">
                         Я
+                        <!-- Left/Right Arrow Icon -->
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -110,6 +113,7 @@
                         </svg>
                     </button>
                     <button title="Reverse" data-reverse="true">
+                        <!-- Left/Right Arrow Icon -->
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -120,13 +124,13 @@
                 </div>
             </details>
         </div>
-        <textarea
-            class="input">Type your text here and 𝗳𝗼𝗿𝗺𝗮𝘁 it by highlighting the text you want to format and clicking one of the buttons above. Click "More fonts" to show more Unicode fonts. The eraser button will convert your selection back to normal text.</textarea>
+        <textarea>Type your text here and 𝗳𝗼𝗿𝗺𝗮𝘁 it by highlighting the text you want to format and clicking one of the buttons above. Click "More fonts" to show more Unicode fonts. The eraser button will convert your selection back to normal text.</textarea>
 
         <div class="large-buttons">
             <button class="btn copy-to-clipboard-button" onclick="(() => formatter.copy(this))();"
                 onmouseout="tooltip.resetTooltip(this);" title="Copy to clipboard"
                 data-original-title="Copy to clipboard " target="_blank">
+                <!-- Copy to Clipboard Icon -->
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
                     width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -138,6 +142,7 @@
 
             <button class="btn tweet-button" onclick="(function() { formatter.tweet() })();" title="Tweet this"
                 target="_blank">
+                <!-- Twitter Logo -->
                 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
                     stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path
