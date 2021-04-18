@@ -61,7 +61,7 @@ let formatter = {
       "Ctrl-.": () => this.formatSelections("superscript"),
       // Subscript
       "Ctrl-=": () => this.formatSelections("subscript"),
-      "Ctrl-,": () => this.formatSelections("superscript"),
+      "Ctrl-,": () => this.formatSelections("subscript"),
     });
   },
 
