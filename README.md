@@ -13,32 +13,34 @@
     <img src="https://img.shields.io/discord/819650821314052106?color=7289DA&logo=discord&logoColor=white&style=for-the-badge"/></a>
 </p>
 
-## Unicode Formatter
+## 📃 Table of contents
 
-- [Unicode Formatter](#unicode-formatter)
-- [Try it out](#try-it-out)
-- [How to use](#how-to-use)
-- [Demo](#demo)
-- [Supported Fonts](#supported-fonts)
-- [Contributing](#contributing)
-- [Contact me](#contact-me)
-- [Support](#support)
+- [📃 Table of contents](#-table-of-contents)
+- [⚡ Try it out!](#-try-it-out)
+- [ℹ️ How to use](#ℹ️-how-to-use)
+- [🖼️ Demo](#️-demo)
+- [📜 Supported Fonts](#-supported-fonts)
+- [⌨️ Keyboard shortcuts](#️-keyboard-shortcuts)
+- [🤗 Contributing](#-contributing)
+- [🙋 Support](#-support)
 
-## Try it out
+## ⚡ Try it out!
 
-[https://git.io/unicode-formatter](https://git.io/unicode-formatter)
+[git.io/unicode-formatter](https://git.io/unicode-formatter)
 
-## How to use
+## ℹ️ How to use
 
-Highlight text in the textarea and then click a button to format your selection with fancy text.
+Type your text in the textarea and format it by highlighting the text you want to format and clicking one of the buttons.
 
-Click the eraser icon to convert the text back to normal.
+Click "More fonts" to show more Unicode fonts.
 
-## Demo
+The eraser button will convert your selection back to normal text.
+
+## 🖼️ Demo
 
 [![screenshot](https://i.imgur.com/Jat8kNo.png)](https://git.io/unicode-formatter)
 
-## Supported Fonts
+## 📜 Supported Fonts
 
 | Font               | Example            |
 | ------------------ | ------------------ |
@@ -75,20 +77,25 @@ Click the eraser icon to convert the text back to normal.
 | Strikethrough       | 𝖲̶𝗍̶𝗋̶𝗂̶𝗄̶𝖾̶𝗍̶𝗁̶𝗋̶𝗈̶𝗎̶𝗀̶𝗁̶       |
 | Short Strikethrough | S̵h̵o̵r̵t̵ ̵S̵t̵r̵i̵k̵e̵t̵h̵r̵o̵u̵g̵h̵ |
 
-## Contributing
+## ⌨️ Keyboard shortcuts
+
+| Shortcut                                                                      | Font          |
+| ----------------------------------------------------------------------------- | ------------- |
+| <kbd>Ctrl</kbd> <kbd>B</kbd>                                                  | 𝗦𝗮𝗻𝘀 𝗯𝗼𝗹𝗱     |
+| <kbd>Ctrl</kbd> <kbd>I</kbd>                                                  | 𝘚𝘢𝘯𝘴 𝘪𝘵𝘢𝘭𝘪𝘤   |
+| <kbd>Ctrl</kbd> <kbd>M</kbd>                                                  | 𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎     |
+| <kbd>Ctrl</kbd> <kbd>U</kbd>                                                  | U͟n͟d͟e͟r͟l͟i͟n͟e͟     |
+| <kbd>Alt</kbd> <kbd>K</kbd> or <kbd>Alt</kbd> <kbd>Shift</kbd> <kbd>5</kbd>   | 𝖲̶𝗍̶𝗋̶𝗂̶𝗄̶𝖾̶𝗍̶𝗁̶𝗋̶𝗈̶𝗎̶𝗀̶𝗁̶ |
+| <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>+</kbd> or <kbd>Ctrl</kbd> <kbd>.</kbd> | ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ   |
+| <kbd>Ctrl</kbd> <kbd>=</kbd> or <kbd>Ctrl</kbd> <kbd>,</kbd>                  | ꜱᵤᵦₛ𝒸ᵣᵢₚₜ     |
+
+## 🤗 Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request if you have a way to improve this project.
 
 Make sure your request is meaningful and you have tested the app locally before submitting a pull request.
 
-## Contact me
-
-<p align="left">
-  <a href="https://twitter.com/DenverCoder1"><img alt="Twitter" title="Twitter" src="https://img.shields.io/badge/-Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white"/></a>
-  <a href="https://www.reddit.com/user/denvercoder1/"><img alt="Reddit" title="Reddit" src="https://img.shields.io/badge/-Reddit-FF5700?style=for-the-badge&logo=reddit&logoColor=white"/></a>
-</p>
-
-## Support
+## 🙋 Support
 
 💙 If you like this project, give it a ⭐ and share it with friends!
 
