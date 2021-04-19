@@ -38,7 +38,7 @@ The eraser button will convert your selection back to normal text.
 
 ## 🖼️ Demo
 
-[![screenshot](https://i.imgur.com/Jat8kNo.png)](https://git.io/unicode-formatter)
+[![demo](https://user-images.githubusercontent.com/51421669/115247650-f9e60d80-a0f4-11eb-92dd-4fd060d8fd7a.gif)](https://git.io/unicode-formatter)
 
 ## 📜 Supported Fonts
 
