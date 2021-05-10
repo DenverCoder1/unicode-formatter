@@ -131,21 +131,8 @@ div.github {
   flex-wrap: wrap;
 }
 
-div.github a {
-  color: black;
-  transition: color 0.2s ease-out;
-}
-
-div.github a:hover {
-  color: #038c78;
-}
-
-div.github a,
-div.github iframe {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0.2em;
+.github span {
+  margin: 0 2px;
 }
 
 /* buttons */
