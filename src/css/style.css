@@ -51,6 +51,14 @@ a:focus {
   display: flex;
   justify-content: center;
   margin: 1em auto 0.5em auto;
+  text-decoration: none;
+  color: black;
+  font-size: 115%;
+  transition: color 0.2s ease-out;
+}
+
+.logo:hover {
+  color: #038c78;
 }
 
 a.logo img {
@@ -125,11 +133,11 @@ div.github {
 
 div.github a {
   color: black;
-  transition: color 0.1s ease-out;
+  transition: color 0.2s ease-out;
 }
 
 div.github a:hover {
-  color: #333333;
+  color: #038c78;
 }
 
 div.github a,
