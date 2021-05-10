@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://i.imgur.com/sM8fUGz.png" width="280px" alt="Unicode Formatter" title="Unicode Formatter"/>
-</p>
+<h1 align="center" title="Unicode Formatter">𝓾𝓷𝓲𝓬𝓸𝓭𝓮 𝙛𝙤𝙧𝙢𝙖𝙩𝙩𝙚𝙧</h1>
 
 <p align="center">
   Format your Unicode text with 𝗯𝗼𝗹𝗱, 𝘪𝘵𝘢𝘭𝘪𝘤𝘴, and 𝚖𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎
