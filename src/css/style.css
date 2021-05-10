@@ -1,3 +1,17 @@
+:root {
+  --text: black;
+  --background: #eaeaea;
+  --highlight: #038c78;
+  --border: #777777;
+  --border-hover: #333333;
+  --textarea: #fafafa;
+}
+
+[data-theme="dark"] {
+  --text: white;
+  --background: #0d0f11;
+}
+
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,7 +27,7 @@ html {
 }
 
 body {
-  background: #eaeaea;
+  background: var(--background);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,6 +36,7 @@ body {
   width: 95vw;
   margin: 0 auto;
   max-width: 600px;
+  color: var(--text);
 }
 
 body,
@@ -42,7 +57,7 @@ button:focus,
 summary:focus,
 a:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #038c78;
+  box-shadow: 0 0 0 2px var(--highlight);
 }
 
 /* logo */
@@ -52,13 +67,13 @@ a:focus {
   justify-content: center;
   margin: 1em auto 0.5em auto;
   text-decoration: none;
-  color: black;
+  color: var(--text);
   font-size: 115%;
   transition: color 0.2s ease-out;
 }
 
 .logo:hover {
-  color: #038c78;
+  color: var(--highlight);
 }
 
 a.logo img {
@@ -92,7 +107,8 @@ a.logo img {
   height: 30px;
   cursor: pointer;
   background: inherit;
-  border: 1px solid #777777;
+  border: 1px solid var(--border);
+  color: var(--text);
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -102,8 +118,7 @@ a.logo img {
 }
 
 .controls button:hover {
-  background: #efefef;
-  border-color: #333333;
+  border-color: var(--border-hover);
 }
 
 .more-fonts button {
@@ -117,7 +132,7 @@ textarea {
   height: 294px;
   border: none;
   outline: none;
-  background: #fafafa;
+  background: var(--textarea);
   padding: 1em;
   font-size: 1.4em;
 }

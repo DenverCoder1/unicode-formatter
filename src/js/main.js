@@ -179,4 +179,8 @@ window.addEventListener("load", function () {
       formatter.formatSelections(this.className, {...this.dataset});
     }, false);
   });
+  // set dark mode on preference
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches == true) {
+    document.body.setAttribute("data-theme", "dark");
+  }
 }, false);
