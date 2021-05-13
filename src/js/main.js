@@ -22,8 +22,8 @@ let formatter = {
     squaredNegative: "\"⧅ !#$%&'()⧆⊞,⊟⊡⧄0123456789:;<=>?@🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉[]^_`🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉{|}~",
     parenthesized: "\"\\ !#$%&'()*+,-./0⑴⑵⑶⑷⑸⑹⑺⑻⑼:;<=>?@⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵[]^_`⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵{|}~",
     smallCaps: "\"\\ !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴩꞯʀꜱᴛᴜᴠᴡxʏᴢ{|}~",
-    subscript: "\"\\ !#$%&'()*₊,₋./₀₁₂₃₄₅₆₇₈₉:;<₌>?@ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘ🇶ʀꜱᴛᴜᴠᴡxʏᴢ[]^_`ₐᵦ𝒸𝒹ₑ𝒻𝓰ₕᵢⱼₖₗₘₙₒₚᵩᵣₛₜᵤᵥ𝓌ₓᵧ𝓏{|}~",
-    superscript: "\"\\ !#$%&'()*⁺,⁻./⁰¹²³⁴⁵⁶⁷⁸⁹:;<⁼>?@ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᵠᴿˢᵀᵁⱽᵂˣʸᶻ[]^_`ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ{|}~",
+    subscript: "\"\\ !#$%&'₍₎*₊,₋./₀₁₂₃₄₅₆₇₈₉:;<₌>?@ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘ🇶ʀꜱᴛᴜᴠᴡxʏᴢ[]^_`ₐᵦ𝒸𝒹ₑ𝒻𝓰ₕᵢⱼₖₗₘₙₒₚᵩᵣₛₜᵤᵥ𝓌ₓᵧ𝓏{|}~",
+    superscript: "\"\\ !#$%&'⁽⁾*⁺,⁻./⁰¹²³⁴⁵⁶⁷⁸⁹:;<⁼>?@ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᵠᴿˢᵀᵁⱽᵂˣʸᶻ[]^_`ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻ{|}~",
     inverted: "„\\ ¡#$%⅋,)(*+‘-˙/0ƖՇƐᔭϛ9Ɫ86:;<=>¿@∀ꓭↃꓷƎℲ⅁HIſꓘ⅂WNOԀῸꓤS⊥∩ꓥMX⅄Z][^‾`ɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz}|{~",
     mirrored: "\"/ !#$%&')(*+,-.\\0߁ςƐ߂टმ٢8୧:;<=>⸮@AꓭↃꓷƎꟻӘHIႱꓘ⅃MИOꟼϘЯꙄTUVWXYZ][^_`ɒdↄbɘʇϱʜiįʞlmᴎoqpᴙꙅɈυvwxγz}|{~",
   },
@@ -33,35 +33,39 @@ let formatter = {
     // no code highlighting and wrap long lines
     this.CodeMirror = CodeMirror.fromTextArea(textarea, {
       mode: null,
-      lineWrapping: true
+      lineWrapping: true,
     });
+
     // list of font characters for checking if character is formatted
     this.allCharacters = new Set(Object.values(this.fonts).join(""));
+
+    // mapping functions
+    const bold = () => this.formatSelections("sansBold");
+    const italic = () => this.formatSelections("sansItalic");
+    const monospace = () => this.formatSelections("monospace");
+    const strikethrough = () =>
+      this.formatSelections("", {
+        append: "̶",
+      });
+    const underline = () =>
+      this.formatSelections("", {
+        append: "͟",
+      });
+    const superscript = () => this.formatSelections("superscript");
+    const subscript = () => this.formatSelections("subscript");
+
     // add keymaps
     this.CodeMirror.setOption("extraKeys", {
-      // Bold
-      "Ctrl-B": () => this.formatSelections("sansBold"),
-      // Italic
-      "Ctrl-I": () => this.formatSelections("sansItalic"),
-      // Monospace
-      "Ctrl-M": () => this.formatSelections("monospace"),
-      // Underline
-      "Ctrl-U": () => this.formatSelections("", {
-        append: "͟"
-      }),
-      // Strikethrough
-      "Alt-K": () => this.formatSelections("", {
-        append: "̶"
-      }),
-      "Shift-Alt-5": () => this.formatSelections("", {
-        append: "̶"
-      }),
-      // Superscript
-      "Shift-Ctrl-=": () => this.formatSelections("superscript"),
-      "Ctrl-.": () => this.formatSelections("superscript"),
-      // Subscript
-      "Ctrl-=": () => this.formatSelections("subscript"),
-      "Ctrl-,": () => this.formatSelections("subscript"),
+      "Ctrl-B": bold,
+      "Ctrl-I": italic,
+      "Ctrl-M": monospace,
+      "Ctrl-U": underline,
+      "Alt-K": strikethrough,
+      "Shift-Alt-5": strikethrough,
+      "Shift-Ctrl-=": superscript,
+      "Ctrl-.": superscript,
+      "Ctrl-=": subscript,
+      "Ctrl-,": subscript,
     });
   },
 
@@ -69,8 +73,8 @@ let formatter = {
   alreadyFormatted: function (text, font) {
     const fontCharacters = new Set(this.fonts[font]);
     // flag as already formatted if all characters are in font or not in any other font
-    return Array.from(text).every((char) =>
-      fontCharacters.has(char) || !this.allCharacters.has(char)
+    return Array.from(text).every(
+      (char) => fontCharacters.has(char) || !this.allCharacters.has(char)
     );
   },
 
@@ -113,12 +117,20 @@ let formatter = {
     // reverse text if reverse option is set
     newText = options?.reverse ? newText.reverse() : newText;
     // remove appended symbol of specific type from the end
-    newText = options?.remove ? newText.map((char) => char.replace(new RegExp(options.remove + "$", "u"), "")) : newText;
+    newText = options?.remove
+      ? newText.map((char) =>
+          char.replace(new RegExp(options.remove + "$", "u"), "")
+        )
+      : newText;
     // append symbol (underline, strikethrough, etc.) to end of each character if append is set
-    newText = options?.append ? newText.map((char) => char + options.append) : newText;
+    newText = options?.append
+      ? newText.map((char) => char + options.append)
+      : newText;
     // remove appended symbols (underline, strikethrough, etc.) if using eraser
     // \u035f = Underline, \u0333 = Double Underline, \u0335 = Short Strikethrough \u0336 = Strikethrough
-    newText = options?.clear ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, "")) : newText;
+    newText = options?.clear
+      ? newText.map((char) => char.replace(/\u035f|\u0333|\u0335|\u0336/gu, ""))
+      : newText;
     // set textarea content and select text around the replacement
     return newText.join("");
   },
@@ -136,7 +148,8 @@ let formatter = {
   // open twitter with the text value as the post
   tweet: function () {
     const text = this.CodeMirror.getValue();
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    const encoded = encodeURIComponent(text)
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encoded}`;
     const win = window.open(twitterUrl, "_blank");
     win.focus();
   },
@@ -176,11 +189,11 @@ window.addEventListener("load", function () {
   document.querySelectorAll(".control-btns button").forEach(function (btn) {
     btn.addEventListener("click", function () {
       // format highlighted text into selected font
-      formatter.formatSelections(this.className, {...this.dataset});
+      formatter.formatSelections(this.className, { ...this.dataset });
     }, false);
   });
   // set dark mode on preference
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches == true) {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.body.setAttribute("data-theme", "dark");
   }
 }, false);
