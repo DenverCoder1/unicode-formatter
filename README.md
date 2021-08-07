@@ -11,17 +11,6 @@
     <img src="https://img.shields.io/discord/819650821314052106?color=7289DA&logo=discord&logoColor=white&style=for-the-badge"/></a>
 </p>
 
-## 📃 Table of contents
-
-- [📃 Table of contents](#-table-of-contents)
-- [⚡ Try it out!](#-try-it-out)
-- [ℹ️ How to use](#ℹ️-how-to-use)
-- [🖼️ Demo](#️-demo)
-- [📜 Supported Fonts](#-supported-fonts)
-- [⌨️ Keyboard shortcuts](#️-keyboard-shortcuts)
-- [🤗 Contributing](#-contributing)
-- [🙋 Support](#-support)
-
 ## ⚡ Try it out!
 
 [git.io/unicode-formatter](https://git.io/unicode-formatter)
