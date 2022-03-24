@@ -39,6 +39,7 @@ body {
   color: var(--text);
 }
 
+/* If on mobile, make the page a minimum of 350px taller
   so that the keyboard doesn't cover the input field */
 @media screen and (max-width: 600px) {
   body {
