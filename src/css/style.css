@@ -39,6 +39,13 @@ body {
   color: var(--text);
 }
 
+  so that the keyboard doesn't cover the input field */
+@media screen and (max-width: 600px) {
+  body {
+    margin-bottom: 350px;
+  }
+}
+
 body,
 button,
 textarea {
