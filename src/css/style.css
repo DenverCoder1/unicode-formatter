@@ -59,6 +59,7 @@ textarea {
   font-size: 22px;
   padding: 18px;
   width: 100%;
+  min-height: 300px;
 }
 
 button:focus,
