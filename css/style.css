@@ -1,0 +1,251 @@
+:root {
+  --text: black;
+  --background: #eaeaea;
+  --highlight: #038c78;
+  --border: #777777;
+  --border-hover: #333333;
+  --textarea: #fafafa;
+}
+
+[data-theme="dark"] {
+  --text: white;
+  --background: #0d0f11;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  width: 95vw;
+  margin: 0 auto;
+  max-width: 600px;
+  color: var(--text);
+}
+
+body,
+button,
+textarea {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+.CodeMirror {
+  font-family: inherit;
+  font-size: 22px;
+  padding: 18px;
+  width: 100%;
+  min-height: 300px;
+}
+
+button:focus,
+summary:focus,
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--highlight);
+}
+
+/* logo */
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto 0.5em auto;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 115%;
+  transition: color 0.2s ease-out;
+}
+
+.logo:hover {
+  color: var(--highlight);
+}
+
+a.logo img {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* controls */
+
+.controls {
+  padding: 0.5em;
+  transition: all 0.4s ease-out;
+  width: 100%;
+}
+
+.control-btns {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+}
+
+.more-fonts summary {
+  margin: 0 0 12px 6px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.controls button {
+  margin: 0.4em;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: inherit;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s ease-in;
+}
+
+.controls button:hover {
+  border-color: var(--border-hover);
+}
+
+.more-fonts button {
+  padding: 0px
+}
+
+/* textarea */
+
+textarea {
+  width: 100%;
+  height: 294px;
+  border: none;
+  outline: none;
+  background: var(--textarea);
+  padding: 1em;
+  font-size: 1.4em;
+}
+
+/* github buttons */
+
+div.github {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.github span {
+  margin: 0 2px;
+}
+
+/* buttons */
+.large-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  color: white;
+  font-size: 1.1em;
+  padding: 0.8em 1.1em;
+  border-radius: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 134px;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin: 1.4em 0.5em 0 0.5em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), 0 6px 6px rgba(0, 0, 0, 0.22);
+}
+
+.btn svg {
+  margin-right: 0.5em;
+}
+
+.tweet-button {
+  background: #1da1f2;
+}
+
+.tweet-button:hover {
+  background: #1a91da;
+}
+
+.copy-to-clipboard-button {
+  background: #858585;
+}
+
+.copy-to-clipboard-button:hover {
+  background: #727272;
+}
+
+/* tooltips */
+
+/* bubble */
+.controls button:before,
+.large-buttons button:before {
+  content: attr(title);
+  height: auto;
+  width: auto;
+  position: absolute;
+  background: #4a4a4afa;
+  border-radius: 4px;
+  color: white;
+  line-height: 30px;
+  font-size: 1.1em;
+  padding: 0 12px;
+  transform: translate(0, -38px);
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* triangle */
+.controls button:after,
+.large-buttons button:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: #4a4a4afa transparent transparent transparent;
+  transform: translate(0, -20px);
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.large-buttons button:before {
+  font-size: 1em;
+  transform: translateY(-52px);
+}
+
+.large-buttons button:after {
+  transform: translateY(-34px);
+}
+
+.controls button:hover:before,
+.large-buttons button:hover:before,
+.controls button:hover:after,
+.large-buttons button:hover:after {
+  opacity: 1;
+}
