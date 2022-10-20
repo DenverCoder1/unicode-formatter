@@ -13,11 +13,11 @@
 
 ## ⚡ Try it out!
 
-[git.io/unicode-formatter](https://git.io/unicode-formatter)
+[unicode-formatter.demolab.com](https://unicode-formatter.demolab.com)
 
 ## ℹ️ How to use
 
-Type your text in the textarea and format it by highlighting the text you want to format and clicking one of the buttons.
+Type your text in the text area and format it by highlighting the text you want to format and clicking one of the buttons.
 
 Click "More fonts" to show more Unicode fonts.
 
@@ -25,7 +25,7 @@ The eraser button will convert your selection back to normal text.
 
 ## 🖼️ Demo
 
-[![demo](https://user-images.githubusercontent.com/51421669/115247650-f9e60d80-a0f4-11eb-92dd-4fd060d8fd7a.gif)](https://git.io/unicode-formatter)
+[![demo](https://user-images.githubusercontent.com/51421669/115247650-f9e60d80-a0f4-11eb-92dd-4fd060d8fd7a.gif)](https://unicode-formatter.demolab.com)
 
 ## 📜 Supported Fonts
 
