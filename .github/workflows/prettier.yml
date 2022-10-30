@@ -32,10 +32,10 @@ jobs:
 
       - name: Check formatting with Prettier
         continue-on-error: true
-        run: prettier --check "**/*.{md,css,js}"
+        run: prettier --check "**/*.{md,css,js}"; prettier --check "**/*.html" --print-width 500
 
       - name: Prettify code
-        run: prettier --write "**/*.{md,css,js}"
+        run: prettier --write "**/*.{md,css,js}"; prettier --write "**/*.html" --print-width 500
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
