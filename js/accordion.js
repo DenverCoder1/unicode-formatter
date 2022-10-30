@@ -44,13 +44,16 @@ class Accordion {
       this.animation.cancel();
     }
     // Start a WAAPI animation
-    this.animation = this.el.animate({
-      // Set the keyframes from the startHeight to endHeight
-      height: [startHeight, endHeight],
-    }, {
-      duration: 400,
-      easing: "ease-out",
-    });
+    this.animation = this.el.animate(
+      {
+        // Set the keyframes from the startHeight to endHeight
+        height: [startHeight, endHeight],
+      },
+      {
+        duration: 400,
+        easing: "ease-out",
+      }
+    );
     // When the animation is complete, call onAnimationFinish()
     this.animation.onfinish = () => this.onAnimationFinish(false);
     // If the animation is cancelled, isClosing variable is set to false
@@ -72,22 +75,23 @@ class Accordion {
     // Get the current fixed height of the element
     const startHeight = `${this.el.offsetHeight}px`;
     // Calculate the open height of the element (summary height + content height)
-    const endHeight = `${
-      this.summary.offsetHeight + this.content.offsetHeight
-    }px`;
+    const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`;
     // If there is already an animation running
     if (this.animation) {
       // Cancel the current animation
       this.animation.cancel();
     }
     // Start a WAAPI animation
-    this.animation = this.el.animate({
-      // Set the keyframes from the startHeight to endHeight
-      height: [startHeight, endHeight],
-    }, {
-      duration: 400,
-      easing: "ease-out",
-    });
+    this.animation = this.el.animate(
+      {
+        // Set the keyframes from the startHeight to endHeight
+        height: [startHeight, endHeight],
+      },
+      {
+        duration: 400,
+        easing: "ease-out",
+      }
+    );
     // When the animation is complete, call onAnimationFinish()
     this.animation.onfinish = () => this.onAnimationFinish(true);
     // If the animation is cancelled, isExpanding variable is set to false
