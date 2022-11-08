@@ -53,8 +53,12 @@ The eraser button will convert your selection back to normal text.
 | Small Caps         | Sᴍᴀʟʟ Cᴀᴩꜱ         |
 | Subscript          | ꜱᵤᵦₛ𝒸ᵣᵢₚₜ          |
 | Superscript        | ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ        |
-| Inverted           | pǝʇɹǝʌuI           |
-| Mirrored           | bɘᴙoᴙᴙiM           |
+| Inverted\*         | Iuʌǝɹʇǝp           |
+| Rotated Left       | ᓚⴰ𝀏ơ𝀏шᓀ ⨼ш𝈯𝀏       |
+| Rotated Right\*    | ᓓⴰ𝀏⌕𝀏ጠ௨ ᓓ𝄩மፓ𝀏      |
+| Mirrored\*         | Miᴙᴙoᴙɘb           |
+
+\* These fonts can also be transformed in Reverse (see Other Transformations below).
 
 ### Appended Styles
 
@@ -63,6 +67,15 @@ The eraser button will convert your selection back to normal text.
 | Underline           | U͟n͟d͟e͟r͟l͟i͟n͟e͟           |
 | Strikethrough       | 𝖲̶𝗍̶𝗋̶𝗂̶𝗄̶𝖾̶𝗍̶𝗁̶𝗋̶𝗈̶𝗎̶𝗀̶𝗁̶       |
 | Short Strikethrough | S̵h̵o̵r̵t̵ ̵S̵t̵r̵i̵k̵e̵t̵h̵r̵o̵u̵g̵h̵ |
+
+## Other Transformations
+
+| Font                  | Example               |
+| --------------------- | --------------------- |
+| Reverse               | esreveR               |
+| Inverted Reverse      | ǝsɹǝʌǝꓤ pǝʇɹǝʌuI      |
+| Rotated Right Reverse | ጠᔕᓓጠ<ጠᓓ 𝀏ፓம𝄩ᓓ ௨ጠ𝀏⌕𝀏ⴰᓓ |
+| Mirrored Reverse      | ɘꙅᴙɘvɘЯ bɘᴙoᴙᴙiM      |
 
 ## ⌨️ Keyboard shortcuts
 
